@@ -1,0 +1,59 @@
+abstract class Shape {
+    protected double area;
+    protected double perimeter;
+    public abstract void calculateArea();
+    public abstract void calculatePerimeter();
+    public double getArea() {
+        return area;
+    }
+    public double getPerimeter() {
+        return perimeter;
+    }
+}
+class Circle extends Shape {
+    private double radius;
+    public Circle(double radius) {
+        this.radius = radius;
+        calculateArea();
+        calculatePerimeter();
+    }
+
+    @Override
+    public void calculateArea() {
+        area = Math.PI * radius * radius;
+    }
+    @Override
+    public void calculatePerimeter() {
+        perimeter = 2 * Math.PI * radius;
+    }
+}
+class Rectangle extends Shape {
+    private double width;
+    private double height;
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+        calculateArea();
+        calculatePerimeter();
+    }
+
+    @Override
+    public void calculateArea() {
+        area = width * height;
+    }
+
+    @Override
+    public void calculatePerimeter() {
+        perimeter = 2 * (width + height);
+    }
+}
+public class R192211379 {
+    public static void main(String[] args) {
+        Shape circle = new Circle(5.0);
+        Shape rectangle = new Rectangle(4.0, 6.0);
+        System.out.println("Circle Area: " + circle.getArea());
+        System.out.println("Circle Perimeter: " + circle.getPerimeter());
+        System.out.println("Rectangle Area: " + rectangle.getArea());
+        System.out.println("Rectangle Perimeter: " + rectangle.getPerimeter());
+    }
+}

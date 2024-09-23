@@ -1,0 +1,42 @@
+class R192211379 {
+    private String name;
+    private int id;
+    private int[] grades;
+    public R192211379(String name, int id, int[] grades) {
+        this.name = name;
+        this.id = id;
+        this.grades = grades;
+    }
+    public double calculateAverage() {
+        if (grades == null || grades.length == 0) return 0;
+        int sum = 0;
+        for (int grade : grades) {
+            sum += grade;
+        }
+        return (double) sum / grades.length;
+    }
+    public char getLetterGrade() {
+        double average = calculateAverage();
+        if (average >= 90) {
+            return 'A';
+        } else if (average >= 80) {
+            return 'B';
+        } else if (average >= 70) {
+            return 'C';
+        } else if (average >= 60) {
+            return 'D';
+        } else {
+            return 'F';
+        }
+    }
+    public static void main(String[] args) {
+        int[] grades = {85, 90, 78, 92, 88};
+        R192211379 student = new R192211379("John Doe", 12345, grades);
+        System.out.println("Student Name: " + student.name);
+        System.out.println("Student ID: " + student.id);
+        System.out.println("Average Grade: " + student.calculateAverage());
+        System.out.println("Letter Grade: " + student.getLetterGrade());
+    }
+}
+
+

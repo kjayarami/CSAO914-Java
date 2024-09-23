@@ -1,0 +1,109 @@
+abstract class Employee {
+    protected String name;
+    protected int id;
+    protected double salary;
+
+    public Employee(String name, int id, double salary) {
+        this.name = name;
+        this.id = id;
+        this.salary = salary;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Name: " + name + ", ID: " + id + ", Salary: $" + String.format("%.2f", salary);
+    }
+
+    public abstract void displayRole();
+}
+class Manager extends Employee {
+    private int numberOfTeamsManaged;
+
+    public Manager(String name, int id, double salary, int numberOfTeamsManaged) {
+        super(name, id, salary);
+        this.numberOfTeamsManaged = numberOfTeamsManaged;
+    }
+
+    public int getNumberOfTeamsManaged() {
+        return numberOfTeamsManaged;
+    }
+
+    public void setNumberOfTeamsManaged(int numberOfTeamsManaged) {
+        this.numberOfTeamsManaged = numberOfTeamsManaged;
+    }
+
+    @Override
+    public void displayRole() {
+        System.out.println("Role: Manager");
+        System.out.println("Number of Teams Managed: " + numberOfTeamsManaged);
+    }
+
+    public void manageTeams() {
+        System.out.println(name + " is managing " + numberOfTeamsManaged + " teams.");
+    }
+}
+class SalesPerson extends Employee {
+    private double totalSales;
+
+    public SalesPerson(String name, int id, double salary, double totalSales) {
+        super(name, id, salary);
+        this.totalSales = totalSales;
+    }
+
+    public double getTotalSales() {
+        return totalSales;
+    }
+
+    public void setTotalSales(double totalSales) {
+        this.totalSales = totalSales;
+    }
+
+    @Override
+    public void displayRole() {
+        System.out.println("Role: Sales Person");
+        System.out.println("Total Sales: $" + String.format("%.2f", totalSales));
+    }
+
+    public void makeSales(double amount) {
+        if (amount > 0) {
+            totalSales += amount;
+            System.out.println(name + " made a sale of $" + String.format("%.2f", amount));
+        } else {
+            System.out.println("Invalid sales amount.");
+        }
+    }
+}
+public class R192211379 {
+    public static void main(String[] args) {
+        Employee manager = new Manager("Alice Johnson", 101, 80000.00, 5);
+        Employee salesPerson = new SalesPerson("Bob Smith", 102, 50000.00, 20000.00);
+        System.out.println("Employee Details:");
+        System.out.println("Manager:");
+        System.out.println(manager);
+        manager.displayRole();
+        ((Manager) manager).manageTeams();
+
+        System.out.println("\nSales Person:");
+        System.out.println(salesPerson);
+        salesPerson.displayRole();
+        ((SalesPerson) salesPerson).makeSales(1500.00);
+        System.out.println("\nUpdated Employee Details:");
+        System.out.println(salesPerson);
+    }
+}
